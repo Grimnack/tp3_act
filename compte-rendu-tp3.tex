@@ -3,7 +3,9 @@
 
 \usepackage[utf8]{inputenc}
 %\usepackage{listings}
-\usepackage{pgf, tikz}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows,automata}
 
 
 \title{TP3 ACT}
@@ -24,19 +26,31 @@
 
 \paragraph{Question 1}
 
-http://www.texample.net/tikz/examples/state-machine/
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+    \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+    \node[state] (A) {$+3$};
+    \node[state] (B)[below left of=A] {$+1$};
+    \node[state] (C)[below right of=A] {$-2$};
+    \node[state] (D)[below left of=C] {$+1$};
+    \node[state] (E)[below right of=C] {$+1$};
+    \node[state] (F)[below of=D][below left of=E][below right of=B] {$0$};
+
+    \path (A) edge              node {} (B)
+    (B) edge                  node {} (D)
+    (A) edge              node {} (C)
+    (C) edge              node {} (D)
+    (C) edge          node {} (E)
+    (A) edge [bend left]         node {} (E)
+    (B) edge [bend right]        node {} (F)
+    (E) edge                     node {} (F)
+    (D) edge                     node {} (F);
+\end{tikzpicture}
 
 
-
-(3,2)(2,0)
-(3,1)(2,0)
-(2,2)(1,0)
-(2,1)(1,0)
-(1,2)(0,0)
-(1,1)(0,0)
-
-
-
+\paragraph{Question 2}
+Si ils sont tous positifs : $res = -1 * min(successeurs)-1$\newline
+Sinon : $res = -1*max(desValeursNegatives) + 1$
 
 
 
