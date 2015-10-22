@@ -119,13 +119,13 @@ def dynamic(m,n,i,j) :
 
 
 def dynamic_rec(m,n,i,j):
-    if (m == n == 0) :
+    if (m == n == 1) :
         return 0
     else :
         positif = []
         negatif = []
         #on coupe la gauche
-        for k in xrange(1,i+1) :
+        for k in xrange(1,i) :
             if tableau[m-k][n][i-k][j] != 0 :
                 res = tableau[m-k][n][i-k][j]
             else :
@@ -135,7 +135,7 @@ def dynamic_rec(m,n,i,j):
             else :
                 negatif.append(res)
         #on coupe la haut
-        for k in xrange(1,j+1) :
+        for k in xrange(1,j) :
             if tableau[m][n-k][i][j-k] != 0 :
                 res = tableau[m][n-k][i][j-k]
             else :
@@ -145,7 +145,7 @@ def dynamic_rec(m,n,i,j):
             else :
                 negatif.append(res)
         #on coupe la droite
-        for k in xrange(1,m-i+1) :
+        for k in xrange(1,m-i) :
             if tableau[m-k][n][i][j] != 0 :
                 res = tableau[m-k][n][i][j]
             else :
@@ -155,7 +155,7 @@ def dynamic_rec(m,n,i,j):
             else :
                 negatif.append(res)
         #on coupe la bas
-        for k in xrange(1,n-j+1) :
+        for k in xrange(1,n-j) :
             if tableau[m][n-k][i][j] != 0 :
                 res = tableau[m][n-k][i][j]
             else :
@@ -169,10 +169,9 @@ def dynamic_rec(m,n,i,j):
         else :
             return -(max(negatif))+1
 
-
-
 #test
 #print naif(10,7,7,3)
 #print naif(10,7,5,3)
 # dynamic(10,7,7,3)
 print dynamic(3,2,0,2)
+print dynamic(10,7,7,3)
