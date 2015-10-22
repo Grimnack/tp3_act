@@ -10,7 +10,7 @@ Pour les tests fonction de (10,7,7,3) = 11
 
 '''
 
-#import numpy as np
+import numpy as np
 
 def calculePrec(liste):
     '''
@@ -107,6 +107,72 @@ def naif(m,n,i,j) :
 
 
 
+def dynamic(m,n,i,j) :
+    global tableau 
+    tableau = np.ndarray(shape=(m,n,i,j), dtype=int)
+    for a in range(m) :
+        for b in xrange(n):
+            for c in xrange(i):
+                for d in xrange(j):
+                    tableau[a][b][c][d] = 0
+    return dynamic_rec(m,n,i,j)
+
+
+def dynamic_rec(m,n,i,j):
+    if (m == n == 0) :
+        return 0
+    else :
+        positif = []
+        negatif = []
+        #on coupe la gauche
+        for k in xrange(1,i+1) :
+            if tableau[m-k][n][i-k][j] != 0 :
+                res = tableau[m-k][n][i-k][j]
+            else :
+                res = dynamic_rec(m-k,n,i-k,j)
+            if(res > 0) :
+                positif.append(res)
+            else :
+                negatif.append(res)
+        #on coupe la haut
+        for k in xrange(1,j+1) :
+            if tableau[m][n-k][i][j-k] != 0 :
+                res = tableau[m][n-k][i][j-k]
+            else :
+                res = dynamic_rec(m,n-k,i,j-k)
+            if(res > 0) :
+                positif.append(res)
+            else :
+                negatif.append(res)
+        #on coupe la droite
+        for k in xrange(1,m-i+1) :
+            if tableau[m-k][n][i][j] != 0 :
+                res = tableau[m-k][n][i][j]
+            else :
+                res  = dynamic_rec(m-k,n,i,j)
+            if(res > 0) :
+                positif.append(res)
+            else :
+                negatif.append(res)
+        #on coupe la bas
+        for k in xrange(1,n-j+1) :
+            if tableau[m][n-k][i][j] != 0 :
+                res = tableau[m][n-k][i][j]
+            else :
+                res = dynamic_rec(m,n-k,i,j)
+            if(res > 0) :
+                positif.append(res)
+            else :
+                negatif.append(res)
+        if(negatif == []):
+            return -(max(positif)+1)
+        else :
+            return -(max(negatif))+1
+
+
+
 #test
-print naif(10,7,7,3)
-print naif(10,7,5,3)
+#print naif(10,7,7,3)
+#print naif(10,7,5,3)
+# dynamic(10,7,7,3)
+print dynamic(3,2,0,2)
