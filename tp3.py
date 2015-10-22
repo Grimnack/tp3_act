@@ -111,6 +111,7 @@ def naif(m,n,i,j) :
 def dynamic(m,n,i,j) :
     global tableau 
     tableau = np.ndarray(shape=(m+1,n+1,i+1,j+1))
+    print 'creation'
     for a in range(m+1) :
         for b in xrange(n+1):
             for c in xrange(i+1):
@@ -125,6 +126,7 @@ def dynamic(m,n,i,j) :
 
 
 def dynamic_rec(m,n,i,j):
+    print (m,n,i,j)
     if not math.isnan(tableau[m][n][i][j]) :
         return tableau[m][n][i][j]
     else :
@@ -172,5 +174,6 @@ def dynamic_rec(m,n,i,j):
 #print naif(10,7,5,3)
 # dynamic(10,7,7,3)
 #print dynamic(3,2,2,0)
-print dynamic(10,7,7,3)
-print dynamic(10,7,5,3)
+# print dynamic(10,7,7,3)
+# print dynamic(10,7,5,3)
+print dynamic(100,100,50,50)
