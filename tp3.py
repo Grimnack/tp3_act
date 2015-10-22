@@ -109,11 +109,11 @@ def naif(m,n,i,j) :
 
 def dynamic(m,n,i,j) :
     global tableau 
-    tableau = np.ndarray(shape=(m,n,i,j), dtype=int)
-    for a in range(m) :
-        for b in xrange(n):
-            for c in xrange(i):
-                for d in xrange(j):
+    tableau = np.ndarray(shape=(m+1,n+1,i+1,j+1), dtype=int)
+    for a in range(m+1) :
+        for b in xrange(n+1):
+            for c in xrange(i+1):
+                for d in xrange(j+1):
                     tableau[a][b][c][d] = 0
     return dynamic_rec(m,n,i,j)
 
