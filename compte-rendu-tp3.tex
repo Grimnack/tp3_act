@@ -49,10 +49,24 @@
 
 
 \paragraph{Question 2}
-Si ils sont tous positifs : $res = -1 * min(successeurs)-1$\newline
+S’ils sont tous positifs : $res = -1 * min(successeurs)-1$\newline
 Sinon : $res = -1*max(desValeursNegatives) + 1$
 
+\paragraph{Question 3}
+La fonction récursive $naif$ calcule toutes les sous-tablettes possibles. Quatre boucles sont utilisées, une pour chaque possibilité de cassure (x colonne(s) à gauche ou à droite, et x ligne(s) en haut ou en bas). Des possibilités sont alors calculées plusieurs fois.\newline
+En Python, la fonction prends en temps respectivement pour les configurations suivantes :
+\begin{description}
+\item[(10, 7, 7, 3)] 4 minutes 47 secondes ;
+\item[(10, 7, 5, 3)] 10 minutes 24 secondes.
+\end{description}
 
+La différence de temps est due à la “profondeur” de la tête de mort dans la tablette. Dans le second cas, elle est plus proche du centre, ce qui décuple le nombre de sous-arbres possiblites.\newline
+La complexité est exponentielle % TODO: justifier %
+
+\paragraph{Question 4}
+
+
+\paragraph{Question 5}
 
 
 
